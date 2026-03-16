@@ -236,39 +236,30 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 * IPv4: 10.128.0.6
 *   Trying 10.128.0.6:80...
 * Connected to bagaev.ai-info.ru (10.128.0.6) port 80
-> POST /submit HTTP/1.1 - метод (POST)
+> POST /submit HTTP/1.1 - *Метод запроса*
 > Host: bagaev.ai-info.ru
 > User-Agent: curl/8.5.0
 > Accept: */*
 > Content-Length: 25
-> Content-Type: application/x-www-form-urlencoded - Content-Type запроса
+> Content-Type: application/x-www-form-urlencoded - *Content-Type*
 >
-< HTTP/1.1 404 Not Found - код ответа
+< HTTP/1.1 405 Not Allowed  - *Код ответа*
 < Server: nginx/1.24.0 (Ubuntu)
-< Date: Wed, 11 Mar 2026 20:00:57 GMT
+< Date: Mon, 16 Mar 2026 19:01:25 GMT
 < Content-Type: text/html
-< Content-Length: 365
+< Content-Length: 166
 < Connection: keep-alive
-< ETag: "69b1b0dd-16d"
 <
-<!DOCTYPE html> - тело запроса
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <title>Boardy — 404</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<html>
+<head><title>405 Not Allowed</title></head>
 <body>
-    <div class="error-page">
-        <h1>404</h1>
-        <p>Страница не найдена</p>
-        <p><a href="/">Вернуться на главную</a></p>
-    </div>
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
 </body>
 </html>
 * Connection #0 to host bagaev.ai-info.ru left intact
 
-В конфигурации nginx не имеет настроенного пути для /submit - поэтому ошибка 404
+Не реализовано Post метода - поэтому ошибка 405
 
 Скриншоты:
 
