@@ -8,7 +8,7 @@ DB_CONFIG = {
     'host': '127.0.0.1',
     'port': 3306,
     'user': 'boardy',
-    'password': 'ваш_пароль',
+    'password': '231006',
     'db': 'boardy',
     'charset': 'utf8mb4',
 }
