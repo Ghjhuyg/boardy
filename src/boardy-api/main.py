@@ -1,21 +1,22 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from datetime import datetime
+from database import get_db
+from routers import comments
 import aiomysql
 
 app = FastAPI(title='Boardy API', version='0.2.0')
- 
-DB_CONFIG = {
-    'host': '127.0.0.1',
-    'port': 3306,
-    'user': 'boardy',
-    'password': 'ваш_пароль',
-    'db': 'boardy',
-    'charset': 'utf8mb4',
-}
- 
-async def get_db():
-    return await aiomysql.connect(**DB_CONFIG)
- 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(comments.router, prefix='/api')
+
 @app.get('/api/status')
 async def status():
     return {'status': 'ok', 'time': str(datetime.now())}
