@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
         
-        $error = 'Неверный email или пароль';
+        $error = 'Неправильный email или пароль';
     }
 }
 
@@ -46,8 +46,10 @@ include __DIR__ . '/partials/nav.php';
        <label for="password">Пароль</label>
        <input type="password" name="password" id="password">
        <button type="submit">Войти</button>
+       <div style="text-align: center; color: #333;">или</div>
+       <a class="underbutton-a" href="/oauth-github.php" style="height: 40px; background-color: #24292e; color: white; border-radius: 4px;">Войти через GitHub</a>
      </form>
-     <div class="underbutton">Нет аккаунта?<a class="underbutton-a" href="/register.php">Зарегистрироваться</a></div>
+     <div class="underbutton">Нет аккаунта?<a class="underbutton-a" href="/register.php">Регистрация</a></div>
   </div>
 </main>
  
