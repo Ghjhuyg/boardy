@@ -1,4 +1,5 @@
 server {
+    listen 80;
     server_name bagaev.ai-info.ru;
  
     root /var/www/boardy;
@@ -10,52 +11,6 @@ server {
     location / {
         try_files $uri $uri/ =404;
     }
-
-#    location /cgi-bin/ {
-#    gzip off;
-#    root /var/www/boardy;
-#    fastcgi_pass unix:/var/run/fcgiwrap.socket;
-#    include fastcgi_params;
-#    fastcgi_param SCRIPT_FILENAME /var/www/boardy$fastcgi_script_name;
-#    }
-    
-#    location = /submit {
-#    gzip off;
-#    fastcgi_pass unix:/var/run/fcgiwrap.socket;
-#    include fastcgi_params;
-#    fastcgi_param SCRIPT_FILENAME /var/www/boardy/cgi-bin/submit.sh;
-#    }
-
-    location ~ \.php$ {
-    fastcgi_pass unix:/var/run/php/php-fpm.sock;
-    include fastcgi_params;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    }
-
+ 
     error_page 404 /404.html;
-
-    location /api {
-    proxy_pass http://127.0.0.1:8000/;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/bagaev.ai-info.ru/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/bagaev.ai-info.ru/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-    }
-    server {
-    if ($host = bagaev.ai-info.ru) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-
-    listen 80;
-    server_name bagaev.ai-info.ru;
-    return 404; # managed by Certbot
-    }
+}
